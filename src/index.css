@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.eye-scroll-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.eye-scroll-zone {
+  position: absolute;
+  background-color: rgba(0, 123, 255, 0.1);
+  border: 2px dashed rgba(0, 123, 255, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.eye-scroll-zone.active {
+  background-color: rgba(0, 123, 255, 0.2);
+  border-color: rgba(0, 123, 255, 0.6);
+}
+
+/* Floating button custom styles */
+#eye-scroll-toggle:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4) !important;
+}
+
+#eye-scroll-toggle:active {
+  transform: scale(0.95) !important;
+}
+
+/* WebGazer specific styles - hide by default */
+#webgazerVideoFeed {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.webgazerGazeDot {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
