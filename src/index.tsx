@@ -312,7 +312,7 @@ class EyeScroll {
         align-items: center;
         justify-content: center;
       ">
-        <img src="/logo.png" alt="Eye Tracking" style="width: 52px; height: 52px;" />
+        <img src="https://i.postimg.cc/s25fKz5c/logo.png" alt="Eye Tracking" style="width: 52px; height: 52px;" />
       </button>
     `;
 
@@ -324,12 +324,12 @@ class EyeScroll {
       if (this.isActive) {
         this.stop();
         button.innerHTML =
-          '<img src="/logo.png" alt="Eye Tracking" style="width: 52px; height: 52px;" />';
+          '<img src="https://i.postimg.cc/s25fKz5c/logo.png" alt="Eye Tracking" style="width: 52px; height: 52px;" />';
         button.style.background = '#AFDDFF';
       } else {
         await this.start();
         button.innerHTML =
-          '<img src="/logo.png" alt="Stop Tracking" style="width: 52px; height: 52px;" />';
+          '<img src="https://i.postimg.cc/s25fKz5c/logo.png" alt="Stop Tracking" style="width: 52px; height: 52px;" />';
         button.style.background = '#FF6363';
       }
     });
