@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { EyeScrollProvider } from './index';
-import Demo from './demo/Demo.tsx';
+import Docs from './demo/Docs.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         autoStart: false,
       }}
     >
-      <Demo />
+      <Docs />
     </EyeScrollProvider>
   </React.StrictMode>,
 );
