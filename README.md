@@ -6,10 +6,6 @@ EyeUX enables hands-free scrolling in your React web applications through real-t
 
 **Client:** React, Typescript, Webgazer.js
 
-## Demo
-
-![Watch the demo](/public/demoVid.gif)
-
 ## Installation
 
 ```
