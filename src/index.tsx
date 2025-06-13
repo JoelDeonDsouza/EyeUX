@@ -400,7 +400,7 @@ interface EyeScrollProviderProps {
   config?: EyeScrollConfig;
 }
 
-export const EyeScrollProvider: React.FC<EyeScrollProviderProps> = ({ children, config = {} }) => {
+export const EyeScrollProvider = React.memo<EyeScrollProviderProps>(({ children, config = {} }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [eyeScroll, setEyeScroll] = useState<EyeScroll | null>(null);
   const [isTracking, setIsTracking] = useState(false);
@@ -468,23 +468,28 @@ export const EyeScrollProvider: React.FC<EyeScrollProviderProps> = ({ children, 
     },
   };
 
-  return (
-    <EyeScrollContext.Provider value={contextValue}>
-      <div
-        ref={containerRef}
-        style={{
+  return React.createElement(
+    EyeScrollContext.Provider,
+    { value: contextValue },
+    React.createElement(
+      'div',
+      {
+        ref: containerRef,
+        style: {
           width: '100%',
           height: '100vh',
           overflow: 'auto',
           position: 'relative',
-        }}
-      >
-        {children}
+        },
+      },
+      children,
 
-        {/* Visual indicators when tracking is active */}
-        {isTracking && (
-          <div
-            style={{
+      // Visual indicators when tracking is active
+      isTracking &&
+        React.createElement(
+          'div',
+          {
+            style: {
               position: 'fixed',
               top: 0,
               left: 0,
@@ -492,63 +497,61 @@ export const EyeScrollProvider: React.FC<EyeScrollProviderProps> = ({ children, 
               bottom: 0,
               pointerEvents: 'none',
               zIndex: 500,
-            }}
-          >
-            {/* Scroll zones visualization */}
-            <div
-              style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                width: `${window.innerWidth * 0.25}px`,
-                height: '100%',
-                background: 'linear-gradient(to right, rgba(255,0,0,0.1), transparent)',
-                borderRight: '2px dashed rgba(255,0,0,0.3)',
-              }}
-            />
+            },
+          },
+          // Scroll zones visualization
+          React.createElement('div', {
+            style: {
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: `${window.innerWidth * 0.25}px`,
+              height: '100%',
+              background: 'linear-gradient(to right, rgba(255,0,0,0.1), transparent)',
+              borderRight: '2px dashed rgba(255,0,0,0.3)',
+            },
+          }),
+          React.createElement('div', {
+            style: {
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              width: `${window.innerWidth * 0.25}px`,
+              height: '100%',
+              background: 'linear-gradient(to left, rgba(0,255,0,0.1), transparent)',
+              borderLeft: '2px dashed rgba(0,255,0,0.3)',
+            },
+          }),
+          React.createElement('div', {
+            style: {
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: `${window.innerHeight * 0.25}px`,
+              background: 'linear-gradient(to bottom, rgba(0,0,255,0.1), transparent)',
+              borderBottom: '2px dashed rgba(0,0,255,0.3)',
+            },
+          }),
+          React.createElement('div', {
+            style: {
+              position: 'absolute',
+              left: 0,
+              bottom: 0,
+              width: '100%',
+              height: `${window.innerHeight * 0.25}px`,
+              background: 'linear-gradient(to top, rgba(255,255,0,0.1), transparent)',
+              borderTop: '2px dashed rgba(255,255,0,0.3)',
+            },
+          }),
+        ),
 
-            <div
-              style={{
-                position: 'absolute',
-                right: 0,
-                top: 0,
-                width: `${window.innerWidth * 0.25}px`,
-                height: '100%',
-                background: 'linear-gradient(to left, rgba(0,255,0,0.1), transparent)',
-                borderLeft: '2px dashed rgba(0,255,0,0.3)',
-              }}
-            />
-
-            <div
-              style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                width: '100%',
-                height: `${window.innerHeight * 0.25}px`,
-                background: 'linear-gradient(to bottom, rgba(0,0,255,0.1), transparent)',
-                borderBottom: '2px dashed rgba(0,0,255,0.3)',
-              }}
-            />
-
-            <div
-              style={{
-                position: 'absolute',
-                left: 0,
-                bottom: 0,
-                width: '100%',
-                height: `${window.innerHeight * 0.25}px`,
-                background: 'linear-gradient(to top, rgba(255,255,0,0.1), transparent)',
-                borderTop: '2px dashed rgba(255,255,0,0.3)',
-              }}
-            />
-          </div>
-        )}
-
-        {/* Loading indicator */}
-        {isLoading && (
-          <div
-            style={{
+      // Loading indicator
+      isLoading &&
+        React.createElement(
+          'div',
+          {
+            style: {
               position: 'fixed',
               top: 20,
               right: 20,
@@ -557,16 +560,17 @@ export const EyeScrollProvider: React.FC<EyeScrollProviderProps> = ({ children, 
               padding: '10px 15px',
               borderRadius: '5px',
               zIndex: 1000,
-            }}
-          >
-            Loading Eye Tracking...
-          </div>
-        )}
+            },
+          },
+          'Loading Eye Tracking...',
+        ),
 
-        {/* Error indicator */}
-        {error && (
-          <div
-            style={{
+      // Error indicator
+      error &&
+        React.createElement(
+          'div',
+          {
+            style: {
               position: 'fixed',
               top: 20,
               right: 20,
@@ -575,15 +579,15 @@ export const EyeScrollProvider: React.FC<EyeScrollProviderProps> = ({ children, 
               padding: '10px 15px',
               borderRadius: '5px',
               zIndex: 1000,
-            }}
-          >
-            Error: {error}
-          </div>
-        )}
-      </div>
-    </EyeScrollContext.Provider>
+            },
+          },
+          `Error: ${error}`,
+        ),
+    ),
   );
-};
+});
+
+EyeScrollProvider.displayName = 'EyeScrollProvider';
 
 // Hook to use EyeScroll context //
 export const useEyeScroll = (): EyeScrollContextType => {
@@ -593,3 +597,5 @@ export const useEyeScroll = (): EyeScrollContextType => {
   }
   return context;
 };
+
+export type { EyeScrollConfig, EyeScrollContextType };

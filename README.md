@@ -6,9 +6,56 @@ EyeUX enables hands-free scrolling in your React web applications through real-t
 
 **Client:** React, Typescript, Webgazer.js
 
-## Screenshots
+## Demo
 
-![App Screenshot](/public/start.png)
+![Watch the demo](/public/demoVid.gif)
+
+## Installation
+
+```
+npm i eye-ux
+```
+
+## 🚀 Quick Start
+
+- Wrap your app in EyeuxProvider
+
+```
+import React from 'react';
+import { EyeScrollProvider } from 'eyeux';
+
+function App() {
+  return (
+    <EyeScrollProvider config={{ direction: 'vertical', autoStart: true }}>
+      <YourContent />
+    </EyeScrollProvider>
+  );
+}
+
+```
+
+- Use the useEyeScroll() Hook:
+
+```
+import { useEyeScroll } from 'eyeux';
+
+function Controls() {
+  const { isTracking, start, stop, updateConfig } = useEyeScroll();
+
+  return (
+    <div>
+      <p>Tracking: {isTracking ? 'ON' : 'OFF'}</p>
+      <button onClick={start}>Start</button>
+      <button onClick={stop}>Stop</button>
+      <button
+        onClick={() => updateConfig({ sensitivity: 2 })}
+      >
+        Increase Sensitivity
+      </button>
+    </div>
+  );
+}
+```
 
 ## Run Locally
 

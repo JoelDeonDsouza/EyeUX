@@ -1,15 +1,21 @@
 {
   "name": "eye-ux",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.5",
   "type": "module",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs.js"
+      }
     }
   },
   "files": [
@@ -18,7 +24,8 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build:lib": "vite build --mode lib",
+    "build": "npm run build:lib",
+    "build:lib": "vite build --mode production",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky",
@@ -26,13 +33,8 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "styled-components": "^6.1.18"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -56,6 +58,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-transform-stub": "^2.0.0",
     "prettier": "^3.5.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "ts-jest": "^29.4.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
@@ -67,5 +71,6 @@
       "eslint --fix",
       "prettier --write"
     ]
-  }
+  },
+  "sideEffects": false
 }

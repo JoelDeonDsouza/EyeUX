@@ -1,25 +1,34 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "noEmit": false,
     "declaration": true,
+    "emitDeclarationOnly": true,
     "declarationDir": "./dist",
     "outDir": "./dist",
-    "verbatimModuleSyntax": false,
-    "allowImportingTsExtensions": false,
-    "jsx": "react-jsx",
-    "emitDeclarationOnly": true,
-    "isolatedModules": false,
     "rootDir": "./src",
+    "jsx": "react-jsx",
     "module": "ESNext",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "target": "ES2018",
+    "lib": [
+      "ES2018",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/index.tsx"
+  ],
   "exclude": [
-    "src/**/*.test.*", 
-    "src/**/*.spec.*",
-    "src/main.tsx",
-    "src/App.tsx",
+    "src/Demo",
+    "**/__tests__/**",
+    "**/*.test.*",
+    "**/*.spec.*",
     "node_modules",
     "dist"
   ]
